@@ -1,0 +1,131 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Oswald", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-steel-900: var(--steel-900);
+  --color-steel-800: var(--steel-800);
+  --color-steel-600: var(--steel-600);
+  --color-steel-400: var(--steel-400);
+  --color-steel-200: var(--steel-200);
+  --color-steel-100: var(--steel-100);
+  --color-ember: var(--ember);
+  --color-ember-glow: var(--ember-glow);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Industrial steel palette (#2B2B2B → #E0E0E0) */
+  --steel-900: oklch(0.25 0 0);     /* #2B2B2B */
+  --steel-800: oklch(0.32 0 0);
+  --steel-600: oklch(0.44 0 0);     /* #565656 */
+  --steel-400: oklch(0.60 0 0);     /* #848484 */
+  --steel-200: oklch(0.76 0 0);     /* #B3B3B3 */
+  --steel-100: oklch(0.89 0 0);     /* #E0E0E0 */
+
+  /* Industrial ember (safety orange) */
+  --ember: oklch(0.68 0.19 45);
+  --ember-glow: oklch(0.74 0.21 55);
+
+  --background: oklch(1 0 0);
+  --foreground: var(--steel-900);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--steel-900);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--steel-900);
+  --primary: var(--steel-900);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: var(--steel-100);
+  --secondary-foreground: var(--steel-900);
+  --muted: var(--steel-100);
+  --muted-foreground: var(--steel-600);
+  --accent: var(--ember);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: var(--steel-100);
+  --input: var(--steel-100);
+  --ring: var(--steel-400);
+
+  --shadow-industrial: 0 20px 40px -20px oklch(0 0 0 / 0.35);
+  --gradient-steel: linear-gradient(180deg, var(--steel-900) 0%, oklch(0.18 0 0) 100%);
+  --gradient-hero: linear-gradient(135deg, oklch(0 0 0 / 0.85) 0%, oklch(0.2 0 0 / 0.6) 100%);
+  --gradient-ember: linear-gradient(135deg, var(--ember) 0%, var(--ember-glow) 100%);
+}
+
+.dark {
+  --background: var(--steel-900);
+  --foreground: oklch(0.98 0 0);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .container-x { @apply mx-auto w-full max-w-7xl px-6 lg:px-10; }
+  .section-y { @apply py-20 md:py-28; }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-accent;
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, oklch(1 0 0 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .diagonal-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--ember) 0px,
+      var(--ember) 12px,
+      var(--steel-900) 12px,
+      var(--steel-900) 24px
+    );
+  }
+}
